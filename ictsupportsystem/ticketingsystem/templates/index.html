@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT Support System</title>
+    <link rel="stylesheet" href="static\css\index.css">
+</head>
+<body>
+    <Header>
+        <div>
+            <p>Labour and Skills ICT Support System</p>
+        </div>
+    </Header>
+    <section class="mainbody" >
+            <div>
+                <div class="log">
+                    <p>
+                        LOGIN
+                    </p>
+                </div>
+
+                <form class="submitform" id="submitcreds" method="post" onsubmit="submitForm(event)">
+                    {% csrf_token %}
+                <div class="name">
+                        <label for="username">Username: </label>
+                        <input type="text" name="username" id="userName">
+                </div>
+                <div class="pass">
+                        <label for="password">Password</label> 
+                        <input type="password" value="" id="userpass">
+                </div>
+                <div id="errorbox" style="color: red;"></div>
+                <div class="loginbuttons">
+                    <button class="butt" type="submit"> login </button> <br>
+                    <button class="butt"> sign up</button>
+                </div>
+            
+                </form>
+
+            </div>
+    </section>
+
+    <footer>
+        <div>
+            footer
+        </div>
+    </footer>
+    <script src="static\js\index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="\static\css\staff.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>ICT Support</title>
+</head>
+<body>   
+  <section class="headersec">
+    <header>
+      <div id="staffmenu">
+       <div class="dropdown">
+          <button class="dropdown-button">Menu</button>
+          <div class="dropdown-content">
+                <a href="#">view knowdge base</a>
+                <a href="#">view ticket status</a>
+                <a href="#">FAQs</a>
+          </div>
+        </div>
+      </div>
+    
+      <div id="staffname1">staff name</div>        
+    </header>
+  </section>
+
+  <section id="formdata">
+    <div id="staffform">
+    <form id="ticketsubmission" action="{% url 'form_submission' %}" method="post">
+      {% csrf_token %}
+      <div>
+        <div id="formfield1" class="formfield">
+        <label for="title">title</label>
+        <input name="title" type="text">
+        </div>
+        <br>
+        <br>
+        <div id="formfield2" class="formfield">
+        <label for="description">Description</label>
+        <input name="description" type="text">
+        </div>
+        <br>
+        <br>
+        <div id="formfield3" class="formfield" >
+        <label for="category">Category</label>
+        <input name="category" type="text">
+        </div>
+        <br>
+        <br>
+        <div id="formfield4" class="formfield">
+        <label for="priority">Priority</label>
+        <input name="priority" type="text">
+        </div>
+        <br>
+        <br>
+        <div id="formfield5" class="formfield">
+        <label for="uploads">upload(file,image(screenshot))</label>
+        <input name="uploads" type="text">
+        </div>
+        <br>
+        <div id="formfield6" class="formfield">
+          <button type="submit">submit</button>
+        </div>
+        
+    </div>
+  </form>
+  </div>
+  </section>
+  <script src="\static\js\staff.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+body{
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #00fa22, #f8f8f7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+header{
+    height: 100px;
+}
+.mainbody{
+    display: flex;
+    margin: 50px;
+    padding: 50px;
+    align-items: center;
+    justify-content: center;
+}
+.log{
+    padding-left: 110px;
+}
+.submitform{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    color: green;
+    border: 2px solid black;
+    flex-direction: column;
+    border-radius: 20px;
+
+}
+.loginbuttons{
+    width: 80px;
+    display: flex;
+    justify-content: space-around;
+
+}
+.butt{
+    margin: 10px;
+}
+.pass{
+    margin: 10px;
+    padding: 10px;
+}
+#errorbox{
+    width: 300px;
+    height: 20px;
+
+}
+.name{
+    margin: 10px;
+    padding: 10px;
+}
+footer{
+
+    height: 100px;
+}
