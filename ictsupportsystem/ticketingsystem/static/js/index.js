@@ -1,3 +1,8 @@
+
+
+document.getElementById("submitcreds").addEventListener("submit", submitForm(e));
+
+
 function submitForm(e){
     e.preventDefault();
     const username = document.getElementById("userName");

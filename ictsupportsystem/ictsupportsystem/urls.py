@@ -20,7 +20,8 @@ from ticketingsystem import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.homepage),
-    path('login/', views.homepage),
+    path('login/', views.login, name='login'),
     path('staff/', views.staffpage),
     path('staff/submitform', views.ticketCreationHandler, name='form_submission')
+
 ]

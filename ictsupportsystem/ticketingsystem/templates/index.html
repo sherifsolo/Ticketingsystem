@@ -20,7 +20,7 @@
                     </p>
                 </div>
 
-                <form class="submitform" id="submitcreds" method="post" onsubmit="submitForm(event)">
+                <form class="submitform" id="submitcreds" method="post" action="{% url 'login' %}">
                     {% csrf_token %}
                 <div class="name">
                         <label for="username">Username: </label>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="pass">
                         <label for="password">Password</label> 
-                        <input type="password" value="" id="userpass">
+                        <input type="password" value="" id="userpass" name="password">
                 </div>
                 <div id="errorbox" style="color: red;"></div>
                 <div class="loginbuttons">
