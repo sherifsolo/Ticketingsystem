@@ -79,4 +79,3 @@ def ticketCreationHandler(request):
     )
   print(data)
   return HttpResponse(f"your ticket with this details was submitted:::: id:{Id} title:{title} \n description:{description} \ncategory:{category} \npriority:{priority} \nuploads:{uploads} \n")
-

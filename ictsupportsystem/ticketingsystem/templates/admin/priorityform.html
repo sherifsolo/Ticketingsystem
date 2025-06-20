@@ -6,8 +6,9 @@
     {% csrf_token %}
     {{ form.as_p }}
     {% for obj in items %}
-      <input type="hidden" name="selectedPriority" value="{{ obj.pk }}" />
+      <input type="hidden" name="_selected_action" value="{{ obj.pk }}" />
     {% endfor %}
+    <input type="hidden" name="action" value="changePriorityLevel" />
     <input type="submit" name="apply" value="Apply" />
   </form>
 {% endblock %}
