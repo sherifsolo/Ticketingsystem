@@ -1,5 +1,6 @@
 from django import forms
-
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import UserCreationForm
 class PriorityForm(forms.Form):
     _selected_action = forms.CharField(widget=forms.MultipleHiddenInput)
     priority = forms.ChoiceField(choices=[
@@ -24,3 +25,11 @@ class AgentForm(forms.Form):
         ('resolved', 'Resolved'),
         ('escalated', 'Escalated'),
     ])
+
+
+User = get_user_model()
+
+class MyUserCreationForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'phonenumber' )

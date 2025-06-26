@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}ICT Support System{% endblock %}</title>
+</head>
+<body>
+  {% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+  {% endif %}
+  {% block content %}{% endblock %}
+</body>
+</html>

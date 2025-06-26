@@ -7,7 +7,7 @@
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <title>ICT Support</title>
 </head>
-<body>   
+<body >   
   <section class="headersec">
     <header>
       <div id="staffmenu">
@@ -21,11 +21,15 @@
         </div>
       </div>
     
-      <div id="staffname1">staff name</div>        
+      <div id="staffname1">  
+        {% if user.is_authenticated %}
+            <p>Welcome, {{ user.username }}! <a href="{% url 'logout' %}">Logout</a></p>
+        {% endif %}
+      </div>        
     </header>
   </section>
 
-  <section id="formdata">
+  <section id="formdata" >
     <div id="staffform">
     <form id="ticketsubmission" action="{% url 'form_submission' %}" method="post">
       {% csrf_token %}

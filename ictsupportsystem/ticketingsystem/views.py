@@ -1,40 +1,46 @@
-from django.shortcuts import render
+from django.shortcuts import  render, redirect
 from django.http import HttpResponse
-from . import ticketingsystemlogic
-from .ticketingsystemlogic import TICKTINGSYSTEM
 from django.shortcuts import redirect
 from ticketingsystem.models import Ticket
 from datetime import datetime
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login, get_user_model
+from django.urls import reverse
+from .forms import MyUserCreationForm
 
 # Create your views here.
 
 
 #https://grok.com/chat/500456f5-ba5e-41df-9ae9-9f7940a06703
-
 def homepage(request):
   return render(request, 'index.html')
+
+@login_required 
 def staffpage(request):
+  if request.user.is_authenticated:
+     if request.user.is_superuser:
+        return redirect(reverse('admin:index'))
   return render(request, 'userpage.html')
 
 #sanitize user input to prevent sql injection, xss
-def login(request):
-  if request.method == 'POST':
-    user = request.POST.get('username')
-    password = request.POST.get('password')
-    if user == "" or password == "":
-      error = "Password or username is required"
-      return redirect('/')
-      #return render(request, 'index.html',{'error': error} )
-    if user == "admin" and password == "admin024":
-        return redirect('/admin/')
 
-    elif user == "staff" and password == "staff097":
-        return render(request, 'userpage.html')
+
+def signup(request):
+    if request.method == 'POST':
+        form = MyUserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('dashboard')
     else:
-      error = f"invalid username {user} or password {password}"
-      return redirect('/')
-      #return render(request, 'index.html',{'error': error} )
-    
+        form = MyUserCreationForm()
+    return render(request, 'registration/signupform.html', {'form': form})
+
+def dashboard(request):
+    return render(request, 'index.html')
+
+@login_required 
 def ticketCreationHandler(request):
   if request.method != 'POST':
     return redirect('/')
@@ -43,6 +49,13 @@ def ticketCreationHandler(request):
   category = request.POST.get('category')
   priority = request.POST.get('priority')
   uploads = request.POST.get('uploads')
+  owner = ""
+  if request.user.is_authenticated:
+        Users = get_user_model()
+        username = request.user.username
+        user = Users.objects.get(username=username)
+        owner = user
+        
   try:
     import time
     import math
@@ -50,7 +63,7 @@ def ticketCreationHandler(request):
           print(f"failed to import the time module with error {e}\n please make sure its installed")
   except Exception as e:
     print("An unexpected error occured...this tickets id has been set to 0, set it manually to avoid collision")
-    Id = 0
+  Id = 0
   currentTime = time.time()
   timeString = time.ctime()
   checkSum = 0
@@ -75,7 +88,8 @@ def ticketCreationHandler(request):
     priority=priority, 
     uploads = uploads, 
     status = "open", 
-    agent = "ictlabour", 
+    agent = "ictlabour",
+    owner = owner,
     )
   print(data)
   return HttpResponse(f"your ticket with this details was submitted:::: id:{Id} title:{title} \n description:{description} \ncategory:{category} \npriority:{priority} \nuploads:{uploads} \n")

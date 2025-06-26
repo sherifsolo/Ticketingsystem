@@ -86,7 +86,7 @@ def changePriorityLevel(modeladmin, request, queryset):
         'title': 'Change Priority Level'
     })
 class TicketAdmin(admin.ModelAdmin):
-    list_display = ('tId', 'title', 'description', 'category','priority' ,'status','agent' ,'creationDateTime')
+    list_display = ('tId', 'title', 'description', 'category','priority' ,'status','agent' , 'owner','creationDateTime')
     actions = [changeStatus, assignAgent, changePriorityLevel] 
 
 admin.site.register(Ticket, TicketAdmin)
